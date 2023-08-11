@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="EUC-KR">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="stylesheet" th:href="@{/assets/css/templatemo-snapx-photography.css}">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script>
+		$(function () {
+			$("#accordion").accordion();
+		});
+	</script>
+
+	<style>
+	
+		.writeHead img {
+			width: 150px;
+			margin-top: 20px;
+			margin-left: 50px;
+		}
+
+		.regist_btn {
+			float: right;
+			margin-top: 25px;
+			margin-right: 30px;
+			font-weight: 700;
+		}
+
+		.accor {
+			width: 50%;
+			margin: 0 auto;
+		}
+
+		.accor .guide {
+			padding: 22px;
+			font-weight: 600;
+
+		}
+
+		.accor .guide2 {
+			margin-bottom: 10px;
+		}
+
+		.accor .mustInput {
+			margin-top: 10px;
+		}
+
+		.ui-state-active {
+			background-color: #00bbff;
+			border: #00bbff;
+		}
+
+		select {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			font-size: 18px;
+			line-height: 22px;
+		}
+
+		.title_content {
+			margin: 0 auto;
+			width: 50%;
+			margin-top: 30px;
+		}
+
+		.house_title {
+			outline: none;
+			display: block;
+			box-sizing: border-box;
+			margin-top: 40px;
+			padding: 15px 50px 15px 0px;
+			border-top: none;
+			border-right: none;
+			border-left: none;
+			width: 100%;
+			font-size: 30px;
+		}
+
+		.house_content {
+			outline: none;
+			margin-top: 20px;
+			width: 100%;
+			border: none;
+			resize: none;
+			height: 1000px;
+			overflow: hidden;
+		}
+
+		.guide2>ul>li {
+			margin-bottom: 15px;
+		}
+
+		.main-button .regBtn {
+			font-size: 15px;
+			color: #fff;
+			background-color: #00bdfe;
+			border: 1px solid #00bdfe;
+			padding: 10px 30px;
+			display: inline-block;
+			border-radius: 10px;
+			font-weight: 500;
+			text-transform: capitalize;
+			letter-spacing: 0.5px;
+			transition: all .3s;
+		}
+		
+		
+		.file_bigBox {
+			display: block;
+			cursor: pointer;
+			width: 100%;
+			height: 600px;
+			
+		}
+		.file_midBox{
+			display: block;
+			height: 100%;
+			overflow: hidden;
+			box-sizing: border-box;
+			cursor: pointer;
+			height: 600px;
+		}
+
+		#main_file {
+			position: absolute;
+		    width: 1px;
+		    height: 1px;
+		    padding: 0;
+		    margin: -1px;
+		    overflow: hidden;
+		    clip: rect(0, 0, 0, 0);
+		    border: 0;
+		}
+		
+		.file_midBox img {
+			
+		    position: relative;
+		    top: 50%;
+		    left: 50%;
+		    -webkit-transform: translate(-50%, -50%);
+		    transform: translate(-50%, -50%);
+		    max-width: 100%;
+		    height: auto;
+		}
+		.upload_display {
+			width: 100%;
+			height: 100%;
+			
+		}
+		
+
+		
+	</style>
+</head>
+
+<body>
+	<form action="houseopenWrite_form" method="post" enctype="multipart/form-data">
+		<!--<input type="hidden" name="user_id" th:value="${session.username}">-->
+		<div class="writeHead">
+			<a href="houseopen"><img th:src="@{/assets/images/logo.png}"></a>
+			<div class="main-button regist_btn">
+				<input type="submit" class="regBtn" value="글등록">
+			</div>
+
+			<hr>
+		</div>
+		
+		
+		
+		
+		<div id="accordion" class="accor">
+			<h3 class="guide">집들이 작성 가이드</h3>
+			<div class="guide2" style="padding-bottom: 10px;">
+				<ul>
+					<li style="list-style: inside disc;">에디터의 섭외 없이 작성해주시는 경우엔 확인 후 게시글 오픈이 반려될 수도 있습니다. 오픈 및 반려 여부는 댓글로
+						안내 드립니다.</li>
+					<li style="list-style: inside disc;">오픈 및 반려 여부 확인은 작성해주신 시점을 기준으로 일주일-10일 가량 소요되며, 댓글로 결과를 안내 드립니다.
+					</li>
+					<li style="list-style: inside disc;">간단한 자기 소개 후 집에 관한 이야기를 들려주세요. (집 공간 사진 최소 15장 이상)</li>
+					<li style="list-style: inside disc;">도면이 있으면 좋아요. (손그림도 OK)</li>
+					<li style="list-style: inside disc;">사진 속 제품 정보를 본문에 최대한 적어주세요. (제품분류/브랜드/제품명 순서)</li>
+					<li style="list-style: inside disc;">사진 첨부 시 용량은 장당 최대 20MB까지 업로드할 수 있고, jpg, png, webp, heif, heic,
+						gif 포맷을 지원합니다.</li>
+					<li style="list-style: inside disc;">정보를 많이 입력할수록 검색 결과에 많이 노출되어 조회수가 올라갑니다.</li>
+					<li style="list-style: inside disc;">커버사진과 제목은 에디터에 의해 변경될 수 있습니다.</li>
+					<li style="list-style: inside disc;">글 작성과 이미지 업로드 시, 타인의 지식재산권을 침해하지 않도록 유의해주세요.</li>
+				</ul>
+			</div>
+			<h3 class="guide mustInput">필수정보입력</h3>
+			<div style="padding-bottom: 10px;">
+				<label for="house_type">주거형태</label>
+				<select id="house_type" name="house_type" class="select_write">
+					<option value="원룸/오피스텔">원룸/오피스텔</option>
+					<option value="아파트">아파트</option>
+					<option value="빌라">빌라</option>
+					<option value="단독주택">단독주택</option>
+					<option value="사무공간">사무공간</option>
+					<option value="상업공간">상업공간</option>
+					<option value="기타">기타</option>
+				</select>
+				<label for="house_size">평수</label>
+				<select id="house_size" name="house_size" class="select_write">
+					<option value="10평미만">10평미만</option>
+					<option value="10평대">10평대</option>
+					<option value="20평대">20평대</option>
+					<option value="30평대">30평대</option>
+					<option value="40평대">40평대</option>
+					<option value="50평대">50평대</option>
+					<option value="60평대">60평대</option>
+					<option value="70평대이상">70평대이상</option>
+				</select>
+				<label for="house_fam">가족형태</label>
+				<select id="house_fam" name="house_fam" class="select_write">
+					<option value="싱글라이프">싱글라이프</option>
+					<option value="신혼부부">신혼부부</option>
+					<option value="아기랑함께">아기랑함께</option>
+					<option value="취학자녀와함께">취학자녀와함께</option>
+					<option value="부모님과함께">부모님과함께</option>
+					<option value="기타">기타</option>
+				</select>
+				<label for="house_adr">지역</label>
+				<select id="house_adr" name="house_adr" class="select_write">
+					<option value="서울특별시">서울특별시</option>
+					<option value="부산광역시">부산광역시</option>
+					<option value="대구광역시">대구광역시</option>
+					<option value="인천광역시">인천광역시</option>
+					<option value="광주광역시">광주광역시</option>
+					<option value="대전광역시">대전광역시</option>
+					<option value="울산광역시">울산광역시</option>
+					<option value="강원도">강원도</option>
+					<option value="경기도">경기도</option>
+					<option value="경상북도">경상도</option>
+					<option value="전라북도">전라도</option>
+					<option value="충청북도">충청도</option>
+					<option value="세종특별자치시">세종특별자치시</option>
+					<option value="제주특별자치도">제주특별자치도</option>
+				</select>
+				<label for="house_remo">작업분야</label>
+				<select id="house_remo" name="house_remo" class="select_write">
+					<option value="리모델링">리모델링</option>
+					<option value="홈스타일링">홈스타일링</option>
+					<option value="부분공사">부분공사</option>
+					<option value="건축">건축</option>
+				</select>
+
+
+			</div>
+		</div>
+		
+		
+		
+		
+		<div>
+				<!--사진업로드-->
+			<div class="title_content preview_image ">
+				<label class="file_bigBox" for="main_file">
+					<span class="file_midBox">
+						<img th:src="@{/assets/images/drop.png}">
+					</span>
+				</label>
+				<input class="upload_name" value="파일선택" disabled="disabled">
+				<input type="file" name="file" id="main_file" class="upload_main_file" multiple>
+
+
+
+				<input type="text" placeholder="제목을 입력해주세요" maxlength="80" class="house_title" name="house_title" required>
+					<img class="photo" style="width: 60%;">
+					<div class="photos" style="width: 100%; text-align: center;">
+						
+					</div>
+				<textarea placeholder="내용을 입력해주세요" class="house_content" wrap="hard" name="house_content"></textarea>
+			</div>
+		</div>
+	</form>
+	
+	
+	
+	  <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+
+  <script th:src="@{/assets/js/isotope.min.js}"></script>
+  <script th:src="@{/assets/js/owl-carousel.js}"></script>
+
+  <script th:src="@{/assets/js/tabs.js}"></script>
+  <script th:src="@{/assets/js/popup.js}"></script>
+  <script th:src="@{/assets/js/custom.js}"></script>
+</body>
+
+</html>

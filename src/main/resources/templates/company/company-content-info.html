@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.company-content {
+		position: relative;
+	}
+
+	.content-container {
+		position: relative;
+	}
+
+	.content-right {
+		padding-left: 350px;
+		margin-bottom: 450px;
+	}
+
+	.info-table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	.info-table td {
+		padding: 8px;
+		border: 1px solid #ddd;
+	}
+
+	.info-table td:first-child {
+		color: #777;
+		width: 25px important;
+	}
+
+	.major {
+		background-color: #f2f2f2;
+	}
+
+	.major td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.recent {
+		background-color: #e0e0e0;
+	}
+
+	.recent td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.info {
+		background-color: #f2f2f2;
+	}
+
+	.info td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.address {
+		background-color: #e0e0e0;
+	}
+
+	.address td:nth-child(2) {
+		font-weight: 550;
+	}
+</style>
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #company-content-info})}">
+
+	<div id="company-content-info">
+
+		<!-- 네비게이션바 -->
+		<th:block th:replace="~{./include/company-layout :: nav}">
+
+		</th:block>
+
+		<!-- 네비게이션바2 -->
+		<th:block th:replace="~{./include/company-layout2 :: nav2}">
+
+		</th:block>
+
+		<div class="container content-container">
+			<!-- 사이드바 -->
+			<th:block th:replace="~{./include/company-layout-side :: nav3}">
+
+			</th:block>
+			<!-- 시공사정보 -->
+			<div class="content-right">
+				<table class="info-table">
+					<tr class="major">
+						<td>
+							시공분야
+						</td>
+						<td>
+							<th:block th:if="${vo.cp_major == 'residental'}">주거공간시공</th:block>
+							<th:block th:if="${vo.cp_major == 'commercial'}">상업공간시공</th:block>
+							<th:block th:if="${vo.cp_major == 'apartment'}">아파트시공</th:block>
+						</td>
+					</tr>
+					<tr class="recent">
+						<td>
+							사례건수
+						</td>
+						<td>
+							[[${cp_count}]]건
+						</td>
+					</tr>
+					<tr class="info">
+						<td>
+							업체소개
+						</td>
+						<td>
+							<th:block>[[${vo.cp_info}]]</th:block>
+						</td>
+					</tr>
+					<tr class="address">
+						<td>
+							업체주소
+						</td>
+						<td>
+							<th:block>[[${vo.cp_adr}]]</th:block>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	</div>
+</th:block>
+
+</html>

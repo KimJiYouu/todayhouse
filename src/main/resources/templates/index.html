@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #bodyContainer})}">
+	<div id="bodyContainer">
+		<style>
+			.navimg {
+				width: 300px;
+			}
+
+			.imgcenter {
+				margin: 0 auto;
+			}
+		</style>
+		<section class="popular-categories">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-heading">
+							<h6>TodayHouse</h6>
+							<h4>당신의 <em>집을</em> 더욱 <em>가치있게</em></h4>
+						</div>
+					</div>
+					<div class="col-lg-6 col-sm-6">
+						<img src="assets/images/bhouse.jpg" alt="">
+					</div>
+					<div class="col-lg-6 col-sm-6 navimg">
+						<img src="assets/images/navimg.avif" alt="">
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</th:block>
+<script>
+	if ('[[${valid_cp_id}]]' !== '') {
+		alert('[[${valid_cp_id}]]');
+	} else if ('[[${valid_cp_pw}]]' !== '') {
+		alert('[[${valid_cp_pw}]]');
+	}
+
+	if ('[[${valid_user_id}]]' !== '') {
+		alert('[[${valid_user_id}]]');
+	} else if ('[[${valid_user_pw}]]' !== '') {
+		alert('[[${valid_user_pw}]]');
+	} else if ('[[${valid_user_email}]]' !== '') {
+		alert('[[${valid_user_email}]]');
+	}
+
+
+
+	if ('[[${msg}]]' !== '') {
+		alert('[[${msg}]]');
+	}
+</script>
+
+</html>

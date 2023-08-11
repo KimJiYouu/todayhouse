@@ -1,0 +1,99 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.today.house.houseopen.service.HouseopenMapper">
+  <select id="getHouseopenList" resultType="HouseopenVO">
+  	select * from houseopen order by house_num desc
+  </select>
+  
+  <select id="getFilterList" resultType="HouseopenVO">
+  	select * from houseopen
+  	<where>
+  	<if test="house_type != ''">
+  		and house_type = #{house_type}
+  	</if>
+  	<if test="house_size != ''">
+  		and house_size = #{house_size}
+  	</if>
+  	<if test="house_adr != ''">
+  		and house_adr = #{house_adr}
+  	</if>
+  	<if test="house_fam != ''">
+  		and house_fam = #{house_fam}
+  	</if>
+  	<if test="house_remo != ''">
+  		and house_remo = #{house_remo}
+  	</if>
+  	</where>
+  	
+  	 order by house_num desc
+  </select>
+  
+  <insert id="houseopenWrite" parameterType="HouseopenVO">
+    insert into houseopen (house_type,
+    					   house_size,
+    					   house_adr,
+    					   house_fam,
+    					   house_remo,
+    					   house_title,
+    					   house_content,
+    					   user_id)
+    values(#{house_type},
+    	   #{house_size},
+    	   #{house_adr},
+    	   #{house_fam},
+    	   #{house_remo},
+    	   #{house_title},
+    	   #{house_content},
+    	   #{user_id})
+  </insert>
+  
+  <select id="getContent" resultType="HouseopenVO">
+     select * from houseopen where house_num = #{house_num}
+  </select>
+  
+  
+  <!-- 파일저장 -->
+  
+  <insert id="houseFileRegist">
+  	
+  	<selectKey order="BEFORE" keyProperty="house_num" resultType="int">
+  		select max(house_num) as house_num from houseopen
+  	</selectKey>
+  	
+  	insert into houseopen_upload(filename, filepath, uuid, house_num)
+  	values(#{filename},
+  		   #{filepath},
+  		   #{uuid},
+  		   #{house_num} + 1)
+  		   
+  </insert>
+  
+  <select id="getFullFileList" resultType="HouseopenUploadVO">
+  		select * from houseopen_upload
+  </select>
+  
+  <delete id="houseopenDelete">
+  	delete from houseopen where house_num = #{house_num}
+  </delete>
+  
+  <update id="houseopenModify" parameterType="HouseopenVO">
+  	update houseopen set house_type=#{house_type},
+    					   house_size=#{house_size},
+    					   house_adr=#{house_adr},
+    					   house_fam=#{house_fam},
+    					   house_remo=#{house_remo},
+    					   house_title=#{house_title},
+    					   house_content=#{house_content}
+    			      where house_num=#{house_num}
+  </update>
+  
+  <update id="houseFileModify" parameterType="HouseopenUploadVO">
+  		update houseopen_upload set filename=#{filename},
+  									filepath=#{filepath},
+  									uuid=#{uuid}
+  								where house_num=#{house_num}
+  </update>
+  
+  </mapper>

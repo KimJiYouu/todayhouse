@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="pageNation(cpPageVO)">
+	<div class="col-lg-12">
+		<ul class="pagination">
+			<!-- 4.맨처음으로 돌아가기 -->
+			<li>
+				<a th:href="@{cp_list(page=1, 
+			   							 amount=${cpPageVO.amount},
+			   							 searchLocation=${cpPageVO.cri.searchLocation},
+			   							 cp_major=${cp_major}
+			   							 )}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+			</li>
+
+			<!-- 2.이전버튼 활성화 여부 -->
+			<th:block th:if="${cpPageVO.prev}">
+				<li style="margin-right:5px;">
+					<a th:href="@{cp_list(page=${cpPageVO.start - 1}, 
+				   							 amount=${cpPageVO.amount},
+				   							 searchLocation=${cpPageVO.cri.searchLocation},
+				   							 cp_major=${cp_major}
+				   							 )}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+				</li>
+			</th:block>
+
+			<!-- 1.페이지반복 -->
+			<th:block th:each="page : ${cpPageVO.pageList}">
+				<li th:class="${page == cpPageVO.page ? 'on' : ''}">
+					<a th:href="@{cp_list (page=${page}, 
+				   						   amount=${cpPageVO.amount},
+				   						   searchLocation=${cpPageVO.cri.searchLocation},
+				   						   cp_major=${cp_major}
+				   						   )}">[[${page}]]</a>
+				</li>
+			</th:block>
+
+			<!-- 3.다음버튼 활성화 여부 -->
+			<th:block th:if="${cpPageVO.next}">
+				<li style="margin-left:5px;">
+					<a th:href="@{cp_list(page=${cpPageVO.end + 1}, 
+				   						  amount=${cpPageVO.amount},
+				   						  searchName=${cpPageVO.cri.searchName},
+				   						  cp_major=${cp_major}
+				   						  )}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+				</li>
+			</th:block>
+
+			<!-- 5.맨 끝으로 가기 -->
+			<li>
+				<a th:href="@{cp_list(page=${cpPageVO.realEnd}, 
+			   						  amount=${cpPageVO.amount},
+			   						  searchLocation=${cpPageVO.cri.searchLocation},
+			   						  cp_major=${cp_major}
+			   						  )}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+			</li>
+		</ul>
+	</div>
+</th:block>

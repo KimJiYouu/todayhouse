@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.content-container {
+		margin-top: 200px;
+		position: relative;
+	}
+
+	.content-right {
+		padding-left: 350px;
+		margin-bottom: 300px;
+	}
+
+	.info-table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	.info-table td {
+		padding: 8px;
+		border: 1px solid #ddd;
+	}
+
+	.info-table td:first-child {
+		color: #777;
+		width: 25px important;
+	}
+
+	.major {
+		background-color: #f2f2f2;
+	}
+
+	.major td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.recent {
+		background-color: #e0e0e0;
+	}
+
+	.recent td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.info {
+		background-color: #e0e0e0;
+	}
+
+	.info td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.address {
+		background-color: #f2f2f2;
+	}
+
+	.address td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.cname {
+		background-color: #f2f2f2;
+	}
+
+	.cname td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.passw {
+		background-color: #e0e0e0;
+	}
+
+	.passw td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.inputtag {
+		width: 600px;
+		height: 40px;
+	}
+
+	.changebtn {
+		margin-top: 20px;
+		width: 100%;
+		height: 40px;
+		background-color: #00bdfe;
+		border: none;
+		border-radius: 15px;
+		color: antiquewhite;
+		font-size: 20px;
+		font-weight: 550;
+	}
+
+	.changebtn:hover {
+		border: 2px solid #00bdfe;
+		background-color: white;
+		color: black;
+	}
+</style>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #company-mypage})}">
+	<div id="company-mypage">
+		<div class="container content-container">
+			<!-- 사이드바2 -->
+			<form action="cp_mypage_change" method="post" enctype="multipart/form-data">
+				<input type="hidden" th:value="${vo.cp_id}">
+				<th:block th:replace="~{./include/company-layout-side2 :: nav4}">
+
+				</th:block>
+				<!-- my정보 -->
+				<div class="content-right">
+					<input type="hidden" th:value="${session.cpname}" name="cp_id">
+					<table class="info-table">
+						<tr class="major">
+							<td>
+								시공분야
+							</td>
+							<td>
+								<th:block th:if="${vo.cp_major == 'residental'}">주거공간시공</th:block>
+								<th:block th:if="${vo.cp_major == 'commercial'}">상업공간시공</th:block>
+								<th:block th:if="${vo.cp_major == 'apartment'}">아파트시공</th:block>
+								<span>--변경--></span>
+								<select name="cp_major">
+									<option th:value="residental" th:selected="${vo.cp_major == 'residental'}">주거공간시공</option>
+									<option th:value="commercial" th:selected="${vo.cp_major == 'commercial'}">상업공간시공</option>
+									<option th:value="apartment" th:selected="${vo.cp_major == 'apartment'}">아파트시공</option>
+								</select>
+							</td>
+						</tr>
+						<tr class="recent">
+							<td>
+								사례건수
+							</td>
+							<td>
+								[[${cp_count}]]건
+							</td>
+						</tr>
+						<tr class="cname">
+							<td>
+								업체이름
+							</td>
+							<td>
+								<input type="text" th:value="${vo.cp_name}" name="cp_name" class="inputtag">
+							</td>
+						</tr>
+						<tr class="info">
+							<td>
+								업체소개
+							</td>
+							<td>
+								<input type="text" th:value="${vo.cp_info}" name="cp_info" class="inputtag">
+							</td>
+						</tr>
+						<tr class="address">
+							<td>
+								업체주소
+							</td>
+							<td>
+								<input type="text" th:value="${vo.cp_adr}" name="cp_adr" class="inputtag">
+							</td>
+						</tr>
+						<tr class="passw">
+							<td>
+								비밀번호
+							</td>
+							<td>
+								<input type="password" name="cp_pw" class="inputtag" th:value="${vo.cp_pw}">
+							</td>
+						</tr>
+					</table>
+					<button type="submit" class="changebtn" id="change-button">변경</button>
+			</form>
+		</div>
+	</div>
+	</div>
+</th:block>
+<script>
+	document.getElementById("change-button").addEventListener("click", function () {
+		if (confirm("정말 변경하시겠습니까?")) {
+			document.getElementById("change-form").submit();
+		}
+	});
+</script>
+
+</html>

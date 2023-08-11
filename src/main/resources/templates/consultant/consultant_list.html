@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #bodyContainer})}">
+	
+	<div id="bodyContainer" >
+	
+		<div id="consultant">
+			<div class="row justify-content-center">
+				<div class="section-heading text-center">
+					<h6><img src="https://mdbootstrap.com/img/new/avatars/6.jpg" style="width: 200px; height: 200px; border: 1px solid #999; border-radius: 50%; "></br>업체사진</h6>
+					<h4>고객견적서</h4><br/><br/><br/>
+				</div>
+							
+				<div class="col-lg-12">
+				<div class="search-form">
+			    <div class="container">
+			      <div class="row">
+			        <div class="col-lg-12">
+			          <form id="search-form" name="gs" method="submit" role="search" action="#">
+			            <div class="row">
+			              <div class="col-lg-4">
+			                <fieldset>
+			                    <label for="contest" class="form-label">검색내용</label>
+			                    <input type="text" name="contest" class="searchText" placeholder="Contest Name..." autocomplete="on" required>
+			                </fieldset>
+			              </div>
+			              <div class="col-lg-4">
+			                <fieldset>
+			                    <label for="category" class="form-label">주거형태</label>
+							    <select name="consultant_house_type" class="form-select" aria-label="Choose a category" id="category" onchange="this.form.click()">
+			                        <option value="">주거형태선택</option>
+			                        <option value="아파트">아파트</option>
+			                        <option value="일반주택">일반주택or빌라</option>
+			                        <option value="상업공간">상업공간</option>
+			                    </select>
+			                </fieldset>
+			              </div>
+			              <div class="col-lg-2">
+			                <fieldset>
+			                    <label for="chooseprice" class="form-label">상태</label>
+							    <select name="consultant_house_type" class="form-select" aria-label="Choose a category" id="category" onchange="this.form.click()">
+			                        <option value="">처리상태</option>
+			                        <option value="미확인">미확인</option>
+			                        <option value="수락">수락</option>
+			                        <option value="거절">거절</option>
+			                        <option value="상담중">상담중</option>
+			                    </select>
+			                </fieldset>
+			              </div>
+			              <div class="col-lg-2">                        
+			                <fieldset>
+			                    <button class="main-button">검색</button>
+			                </fieldset>
+			              </div>
+			            </div>
+			          </form>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+  		<div class="section-heading text-center">
+					<table class="table align-middle mb-0 bg-white" style="text-align: center; margin-top:50px;">
+	
+						<thead class="bg-light">
+							<tr>
+								<th>num</th>
+								<th>고객아이디</th>
+								<th>지역</th>
+								<th>주거형태</th>
+								<th>요청일</th>
+								<th>시공시작일</th>
+								<th>내용보기</th>
+								<th>상태</th>
+	
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">1</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">hyemin</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">서울</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">아파트</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/01/04</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/05/04</p>
+										</div>
+									</div>
+								</td>
+								<td>
+									<button type="button" class="btn btn-link btn-sm btn-rounded">
+										내용보기
+									</button>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">완료</p>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">1</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">hyemin</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">서울</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">아파트</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/01/04</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/05/04</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<button type="button" class="btn btn-link btn-sm btn-rounded">
+										내용보기
+									</button>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">완료</p>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">1</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">hyemin</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">서울</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">아파트</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/01/04</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/05/04</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<button type="button" class="btn btn-link btn-sm btn-rounded">
+										내용보기
+									</button>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">완료</p>
+										</div>
+									</div>
+								</td>								
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">1</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">hyemin</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">서울</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">아파트</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/01/04</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/05/04</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<button type="button" class="btn btn-link btn-sm btn-rounded">
+										내용보기
+									</button>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">완료</p>
+										</div>
+									</div>
+								</td>								
+							</tr>
+						</tbody>
+						<tbody>
+							<tr>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">1</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">hyemin</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">서울</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">아파트</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/01/04</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">2023/05/04</p>
+		
+										</div>
+									</div>
+								</td>
+								<td>
+									<button type="button" class="btn btn-link btn-sm btn-rounded">
+										내용보기
+									</button>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<div class="ms-3">
+											<p class="fw-bold mb-1">완료</p>
+										</div>
+									</div>
+								</td>								
+							</tr>
+						</tbody>
+					</table>
+					
+				</div>
+	
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	</th:block>
+
+
+
+<style>
+	#consultant {
+	
+	padding-top: 100px;
+	display: flex;
+  justify-content: center;
+
+	}
+	
+	#consult_bottom{
+		padding-top: 200px;
+	}
+	
+	
+</style>
+
+
+
+
+</html>

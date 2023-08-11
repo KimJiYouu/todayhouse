@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.ex-table {
+		margin-top: 200px;
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	.ex-table td {
+		padding: 8px;
+		border: 1px solid #ddd;
+	}
+
+	.ex-table td:first-child {
+		color: #777;
+		width: 25px important;
+	}
+
+	.changebtn {
+		margin-top: 20px;
+		width: 100px;
+		height: 40px;
+		background-color: #00bdfe;
+		border: none;
+		border-radius: 15px;
+		color: antiquewhite;
+		font-size: 20px;
+		font-weight: 550;
+	}
+
+	.changebtn:hover {
+		border: 2px solid #00bdfe;
+		background-color: white;
+		color: black;
+	}
+</style>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #company-ex-modify})}">
+
+	<div id="company-ex-modify">
+		<!-- my정보 -->
+		<div style="text-align: center;">
+			<div class="content-center">
+				<form action="cp_ex_change" method="post">
+					<input type="hidden" th:value="${session.cpname}" name="cp_id">
+					<input type="hidden" th:value="${vo.cp_ex_num}" name="cp_ex_num">
+					<table class="ex-table">
+						<tr>
+							<td>
+								제목
+								<input type="text" th:value="${vo.cp_ex_title}" name="cp_ex_title">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								내용
+								<input type="text" th:value="${vo.cp_ex_content}" name="cp_ex_content" style="height: 100px;">
+							</td>
+						</tr>
+					</table>
+					<p>날짜 [[${vo.cp_ex_regdate}]]</p>
+					<button type="submit" class="changebtn" id="change-button">변경</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</th:block>
+<script>
+	document.getElementById("change-button").addEventListener("click", function () {
+		if (confirm("정말 변경하시겠습니까?")) {
+			document.getElementById("change-form").submit();
+		}
+	});
+</script>
+</html>

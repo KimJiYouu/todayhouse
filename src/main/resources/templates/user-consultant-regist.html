@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #f5f5f5;
+		margin: 0;
+		padding: 0;
+	}
+
+	#user-consultant-regist {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+		background-color: #f5f5f5;
+	}
+
+	.regist-wrap {
+		background-color: white;
+		border-radius: 10px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		padding: 20px;
+		width: 400px;
+	}
+
+	h1 {
+		font-size: 24px;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	label {
+		display: block;
+		margin-top: 10px;
+		font-weight: bold;
+	}
+
+	input {
+		width: 100%;
+		padding: 10px;
+		margin-top: 5px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 16px;
+	}
+
+	textarea {
+		width: 100%;
+		padding: 10px;
+		margin-top: 5px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 16px;
+	}
+
+	button {
+		
+		width: 100%;
+		background-color: #007bff;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		padding: 10px 20px;
+		font-size: 16px;
+		cursor: pointer;
+	}
+
+	button:hover {
+		background-color: #0056b3;
+	}
+	
+	p{
+		text-align: right;
+	}
+</style>
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #user-consultant-regist})}">
+
+	<div id="user-consultant-regist">
+		<div class="regist-wrap">
+			<div class="contain">
+				<h1>상담신청</h1>
+				<form action="user_consultant_regist_form" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="cp_id" th:value="${cp_id}">
+					<input type="hidden" name="user_id" th:value="${user_id}">
+
+					<label for="title">상담신청할 집 평수</label>
+					<input type="text" id="title" name="consultant_house_size" required>
+
+					<label for="title">상담신청할 집 주소</label>
+					<input type="text" id="title" name="consultant_house_adr" required>
+
+					<label for="title">연락처</label>
+					<input type="text" id="title" name="consultant_phone" required>
+
+					<label for="title">상담신청 내용</label>
+					<input type="text" id="title" name="consultant_content" required>
+
+					<p>날짜 : [[${today}]]</p>
+
+					<button type="submit" id="subbtn">등록</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</th:block>
+<script>
+	if ('[[${msg}]]' != '') {
+		alert('[[${msg}]]');
+	}
+
+	document.querySelector("#subbtn").addEventListener("click", function (event) {
+		if (!confirm("정말 등록하시겠습니까?")) {
+			event.preventDefault(); // 등록을 취소하여 폼 제출을 막음
+		}
+	});
+
+</script>
+
+</html>

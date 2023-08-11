@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.noneimage-wrap {
+		padding-top: 50px;
+		text-align: center;
+	}
+
+	.noneimage-wrap p {
+		margin-top: 20px;
+		font-size: 20px;
+		color: black;
+		font-weight: 550;
+	}
+
+	.noneimage {
+		width: 10%;
+	}
+
+	/* 테이블 전체 스타일링 */
+	.consultant-table {
+		width: 100%;
+		border-collapse: collapse;
+		border: 1px solid #ddd;
+		font-size: 14px;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	/* 테이블 헤더 스타일링 */
+	.consultant-table thead th {
+		background-color: #f2f2f2;
+		border: 1px solid #ddd;
+		padding: 10px;
+		font-weight: bold;
+	}
+
+	/* 테이블 내용 행 스타일링 */
+	.consultant-table tbody tr {
+		border: 1px solid #ddd;
+	}
+
+	/* 짝수 번째 행 배경색 변경 */
+	.consultant-table tbody tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+
+	/* 테이블 셀 스타일링 */
+	.consultant-table td {
+		padding: 10px;
+		border: 1px solid #ddd;
+	}
+
+	/* 요청사항 및 응답상태 셀의 텍스트 왼쪽 정렬 */
+	.consultant-table td.align-left {
+		text-align: left;
+	}
+
+	/* 링크 스타일링 */
+	.detail-link {
+		color: #007bff;
+		text-decoration: none;
+		transition: color 0.3s;
+	}
+
+	.detail-link:hover {
+		color: #0056b3;
+	}
+
+	.exregist {
+		width: 30px;
+		height: 20px;
+		background-color: #00bdfe;
+		border: none;
+		border-radius: 5px;
+		color: antiquewhite;
+		font-size: 13px;
+		font-weight: 550;
+		text-align: center;
+		line-height: 20px;
+	}
+
+	.exregist:hover {
+		box-sizing: border-box;
+		border: 2px solid #00bdfe;
+		background-color: white;
+		color: black;
+	}
+</style>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #consultant-list})}">
+
+	<div id="consultant-list">
+		<section class="contest-waiting">
+			<div class="container">
+				<div class="row">
+					<!-- 리스트 -->
+					<th:block th:if="${list.size == 0}">
+						<div class="noneimage-wrap">
+							<img src="assets/images/cat.jpg" alt="1" class="noneimage">
+							<p>죄송합니다. 표시할 정보가 없습니다.</p>
+						</div>
+					</th:block>
+					<th:block th:unless="${list.size == 0}">
+						<table class="consultant-table">
+							<thead>
+								<tr>
+									<th>상담요청 발신인</th>
+									<th>상담요청 전화번호</th>
+									<th>상담요청 주소</th>
+									<th>상세보기</th>
+									<th>나의 응답</th>
+								</tr>
+							</thead>
+							<tbody>
+								<th:block th:each="vo : ${list}">
+									<th:block th:if="${vo.consultant_response == '응답대기중'}">
+										<tr>
+											<td>[[${vo.user_id}]]</td>
+											<td>[[${vo.consultant_phone}]]</td>
+											<td>[[${vo.consultant_house_adr}]]</td>
+											<td><a class="detail-link"
+													th:href="@{cp_consultant_info (cp_id=${vo.cp_id}, consultant_num=${vo.consultant_num})}">상세보기</a>
+											</td>
+											<th class="wait">
+												<span>[[${vo.consultant_response}]]</span>
+												<a type="button"
+													th:href="@{cp_consultant_accept (cp_id=${vo.cp_id}, consultant_num=${vo.consultant_num})}"
+													class="exregist">O</a>
+												<a type="button"
+													th:href="@{cp_consultant_decline (cp_id=${vo.cp_id}, consultant_num=${vo.consultant_num})}"
+													class="exregist">X</a>
+											</th>
+										</tr>
+									</th:block>
+								</th:block>
+								<th:block th:each="vo : ${list}">
+									<th:block th:if="${vo.consultant_response == '승낙'}">
+										<tr>
+											<td>[[${vo.user_id}]]</td>
+											<td>[[${vo.consultant_phone}]]</td>
+											<td>[[${vo.consultant_house_adr}]]</td>
+											<td><a class="detail-link"
+													th:href="@{cp_consultant_info (cp_id=${vo.cp_id}, consultant_num=${vo.consultant_num})}">상세보기</a>
+											</td>
+											<th>
+												<span style="color: blue;">[[${vo.consultant_response}]]</span>
+											</th>
+										</tr>
+									</th:block>
+								</th:block>
+								<th:block th:each="vo : ${list}">
+									<th:block th:if="${vo.consultant_response == '거절'}">
+										<tr>
+											<td>[[${vo.user_id}]]</td>
+											<td>[[${vo.consultant_phone}]]</td>
+											<td>[[${vo.consultant_house_adr}]]</td>
+											<td><a class="detail-link"
+													th:href="@{cp_consultant_info (cp_id=${vo.cp_id}, consultant_num=${vo.consultant_num})}">상세보기</a>
+											</td>
+											<th>
+												<span style="color: red;">[[${vo.consultant_response}]]</span>
+											</th>
+										</tr>
+									</th:block>
+								</th:block>
+							</tbody>
+						</table>
+					</th:block>
+					<!-- list end -->
+				</div>
+			</div>
+		</section>
+	</div>
+</th:block>
+
+
+</html>

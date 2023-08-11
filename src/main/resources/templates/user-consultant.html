@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.noneimage-wrap {
+		padding-top: 50px;
+		text-align: center;
+	}
+
+	.noneimage-wrap p {
+		margin-top: 20px;
+		font-size: 20px;
+		color: black;
+		font-weight: 550;
+	}
+
+	.noneimage {
+		width: 10%;
+	}
+
+	/* 테이블 전체 스타일링 */
+	.consultant-table {
+		width: 100%;
+		border-collapse: collapse;
+		border: 1px solid #ddd;
+		font-size: 14px;
+		text-align: center;
+	}
+
+	/* 테이블 헤더 스타일링 */
+	.consultant-table thead th {
+		background-color: #f2f2f2;
+		border: 1px solid #ddd;
+		padding: 10px;
+		font-weight: bold;
+	}
+
+	/* 테이블 내용 행 스타일링 */
+	.consultant-table tbody tr {
+		border: 1px solid #ddd;
+	}
+
+	/* 짝수 번째 행 배경색 변경 */
+	.consultant-table tbody tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+
+	/* 테이블 셀 스타일링 */
+	.consultant-table td {
+		padding: 10px;
+		border: 1px solid #ddd;
+	}
+
+	/* 요청사항 및 응답상태 셀의 텍스트 왼쪽 정렬 */
+	.consultant-table td.align-left {
+		text-align: left;
+	}
+
+	/* 링크 스타일링 */
+	.detail-link {
+		color: #007bff;
+		text-decoration: none;
+		transition: color 0.3s;
+	}
+
+	.detail-link:hover {
+		color: #0056b3;
+	}
+</style>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #consultant-list})}">
+
+	<div id="consultant-list">
+		<section class="contest-waiting">
+			<div class="container">
+				<div class="row">
+					<!-- 리스트 -->
+					<th:block th:if="${list.size == 0}">
+						<div class="noneimage-wrap">
+							<img src="assets/images/cat.jpg" alt="1" class="noneimage">
+							<p>죄송합니다. 표시할 정보가 없습니다.</p>
+						</div>
+					</th:block>
+					<th:block th:unless="${list.size == 0}">
+						<table class="consultant-table">
+							<thead>
+								<tr>
+									<th>사용자 아이디</th>
+									<th>시공사 이름</th>
+									<th>요청사항</th>
+									<th>응답상태</th>
+									<th>상세보기</th>
+								</tr>
+							</thead>
+							<tbody>
+								<th:block th:each="vo : ${list}">
+									<tr>
+										<td>[[${vo.user_id}]]</td>
+										<td>[[${vo.cp_id}]]</td>
+										<td>[[${vo.consultant_content}]]</td>
+										<td>[[${vo.consultant_response}]]</td>
+										<td><a class="detail-link" th:href="@{user_consultant_info (user_id=${vo.user_id}, consultant_num=${vo.consultant_num})}">상세보기</a></td>
+									</tr>
+
+								</th:block>
+							</tbody>
+						</table>
+					</th:block>
+					<!-- end -->
+				</div>
+			</div>
+		</section>
+	</div>
+</th:block>
+
+</html>

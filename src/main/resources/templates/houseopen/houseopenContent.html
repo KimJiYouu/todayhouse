@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<style>
+		.details {
+			width: 40%;
+			margin: 0 auto;
+			margin-top: 50px;
+		}
+		.details h1 {
+			font-size: 35px;
+			font-weight: 999;
+			
+		}
+		.details p {
+			font-size: 15px;
+			color: gray;
+		}
+		.profile {
+			float: left;
+			margin-top: 20px;
+		}
+		.follow_btn {
+			margin-top: 10px;
+			float: right;
+		}
+		.idd {
+			font-size: 20px;
+			font-weight: 600;
+		}
+		.details_info {
+			display: flex;
+    		padding: 10px 15px;
+    		margin-top: 100px;
+    		border-radius: 7px;
+    		
+		}
+		.info_list {
+    		background-color: rgb(235, 235, 235);
+			flex: 1 0 0px;
+    		padding: 14px 0px;
+    		text-align: center;
+    		border: 3px solid white;
+    		border-radius: 10px;
+    		font-weight: 600;
+		}
+		.details_content {
+			margin-top: 30px;
+			line-height: 200%;
+			padding: 10px;
+		}
+	
+		
+	</style>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #bodyContainer})}">
+	<div id="bodyContainer">
+		
+	<img th:if="${fileList.containsKey(vo.house_num)}" th:src="${fileList.get(vo.house_num)}" style="background: center; height: 650px;">
+	<img th:unless="${fileList.containsKey(vo.house_num)}" th:src="@{/assets/images/in8.jpg}"style="background: center; height: 650px;">
+	<div class="details">
+		<div class="details_title">
+		<p>[[${vo.house_adr}]]</p>
+		<h1>[[${vo.house_title}]]</h1>
+		
+		<div class="profile">
+		<div class="idd">[[${vo.user_id}]]</div>
+		<div class="regdate">[[${#dates.format(vo.house_regdate, 'yy.MM.dd')}]]</div>
+		</div>
+		
+		<div th:if="${session.username == vo.user_id}">
+			
+		   <div class="main-button follow_btn">
+            <a th:href="@{houseopenModify(house_num=${vo.house_num})}" style="padding: 10px 20px; margin-left: 5px;">수정</a>
+          </div>
+		   <div class="main-button follow_btn">
+            <a th:href="@{houseopenDelete(house_num=${vo.house_num})}" style="padding: 10px 20px;">삭제</a>
+          </div>
+		</div>
+		</div>
+		
+		<div class="details_info">
+			<div class="info_list">[[${vo.house_type}]]</div>
+			<div class="info_list">[[${vo.house_size}]]</div>
+			<div class="info_list">[[${vo.house_fam}]]</div>
+			<div class="info_list">[[${vo.house_remo}]]</div>
+		</div>
+		
+		<div class="details_content">
+			[[${vo.house_content}]]
+		</div>
+		
+		 <div class="main-button" style="margin-top: 50px; text-align: center;">
+            <a href="houseopen">목록</a>
+          </div>
+		
+	</div>
+	
+
+	</div>
+
+</th:block>
+
+
+</html>

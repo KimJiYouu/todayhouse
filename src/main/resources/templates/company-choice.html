@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.cp-button-wrap-wrap {
+		overflow: hidden;
+		text-align: center;
+	}
+
+	.cp-button-wrap {
+		float: left;
+		width: 33.3333%;
+		padding: 20px;
+	}
+
+	.residental,
+	.commercial,
+	.apartment {
+		width: 200px;
+		height: 200px;
+		font-size: 30px;
+		border-radius: 15px;
+		border: 1px solid #777;
+	}
+
+	.residental:hover,
+	.commercial:hover,
+	.apartment:hover {
+		background-color: #00bdfe;
+	}
+
+	.cp-button-wrap p {
+		margin-top: 10px;
+		font-size: 20px;
+	}
+</style>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #company-choice})}">
+	<div id="company-choice">
+		<section class="contest-waiting">
+			<div class="container">
+				<div class="row">
+					<div class="cp-button-wrap-wrap">
+
+						<form th:action="@{/company/cp_list}" method="get">
+							<!-- 주거공간버튼 -->
+							<div class="cp-button-wrap">
+								<button class="residental" type="submit" name="cp_major" th:value="residental">
+									<i class="fas fa-home"></i>
+								</button>
+								<p>주거공간시공</p>
+							</div>
+
+							<!-- 상업공간버튼 -->
+							<div class="cp-button-wrap">
+								<button class="commercial" type="submit" name="cp_major" th:value="commercial">
+									<i class="fas fa-store"></i>
+								</button>
+								<p>상업공간시공</p>
+							</div>
+
+							<!-- 아파트버튼 -->
+							<div class="cp-button-wrap">
+								<button class="apartment" type="submit" name="cp_major" th:value="apartment">
+									<i class="fas fa-building"></i>
+								</button>
+								<p>아파트시공</p>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</th:block>
+
+</html>

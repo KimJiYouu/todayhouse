@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.regist-wrap {
+		margin-top: 150px;
+	}
+
+	.contain {
+		max-width: 600px;
+		margin: 50px auto;
+		padding: 20px;
+		background-color: #fff;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+
+	h1 {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	form label {
+		display: block;
+		margin-bottom: 8px;
+		font-weight: bold;
+	}
+
+	input[type="text"],
+	textarea,
+	input[type="file"] {
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+
+	button {
+		display: block;
+		width: 100%;
+		padding: 10px;
+		background-color: #3498db;
+		color: #fff;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+	button:hover {
+		background-color: #2980b9;
+	}
+
+	textarea {
+		width: 100%;
+		height: 200px;
+		padding: 10px;
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		resize: none;
+		overflow: auto;
+	}
+
+	.file_bigBox {
+		display: block;
+		cursor: pointer;
+		width: 100%;
+		height: 400px;
+
+	}
+
+	.file_midBox {
+		display: block;
+		height: 100%;
+		overflow: hidden;
+		box-sizing: border-box;
+		cursor: pointer;
+		height: 400px;
+	}
+
+	#main_file {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+	}
+
+	.file_midBox img {
+
+		position: relative;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		max-width: 100%;
+		height: auto;
+	}
+
+	.upload_display {
+		width: 100%;
+		height: 100%;
+
+	}
+</style>
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #company-ex-modify})}">
+
+	<div id="company-ex-modify">
+		<div class="regist-wrap">
+			<div class="contain">
+				<h1>시공사 사례 등록</h1>
+				<form action="cp_ex_change" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="cp_id" th:value="${session.cpname}">
+					<input type="hidden" th:value="${vo.cp_ex_num}" name="cp_ex_num">
+					<label for="title">글 제목:</label>
+					<input type="text" id="title" name="cp_ex_title" th:value="${vo.cp_ex_title}" required>
+
+					<label for="content">글 내용:</label>
+					<textarea id="content" name="cp_ex_content" rows="6" required>[[${vo.cp_ex_content}]]</textarea>
+
+					<label for="image">이미지 업로드:</label>
+					<div class="title_content preview_image ">
+						<label class="file_bigBox" for="main_file">
+							<span class="file_midBox">
+								<img th:if="${fileList2.containsKey(vo.cp_ex_num)}" th:src="${fileList2.get(vo.cp_ex_num)}">
+								<img th:unless="${fileList2.containsKey(vo.cp_ex_num)}" th:src="@{/assets/images/pf.png}">
+							</span>
+						</label>
+						<input class="upload_name" value="파일선택" disabled="disabled">
+						<input type="file" name="file" id="main_file" class="upload_main_file" multiple>
+
+						<button type="submit" id="change-button">변경</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+</th:block>
+<script>
+	document.getElementById("change-button").addEventListener("click", function () {
+		if (confirm("정말 변경하시겠습니까?")) {
+			document.getElementById("change-form").submit();
+		}
+	});
+</script>
+
+</html>

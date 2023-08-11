@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="nav3">
+	<style>
+		.side {
+			position: absolute;
+			top: 0px;
+			left: 20px;
+			width: 280px;
+		}
+
+		.side_wrap {
+			border: 1px solid #777;
+			padding: 25px 15px;
+		}
+
+		.side_title_wrap {
+			text-align: center;
+			margin-bottom: 20px;
+
+		}
+
+		.side_title {
+			font-size: 25px;
+			font-weight: 550;
+		}
+
+		.side_content_wrap {
+			margin-bottom: 20px;
+		}
+
+		.side_content {
+			font-size: 15px;
+			word-wrap: break-word;
+			text-align: left;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.side_star_wrap {
+			margin-bottom: 20px;
+		}
+
+		.side_star {
+			color: #00bdfe;
+		}
+
+		.side_button_wrap {
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		.consultant_button {
+			width: 100%;
+			border: none;
+			background-color: #00bdfe;
+			color: white;
+			font-weight: 550;
+			height: 40px;
+			border-radius: 10px;
+		}
+		
+			.file_bigBox {
+			display: block;
+			cursor: pointer;
+			width: 100%;
+			height: 100px;
+			
+		}
+		.file_midBox{
+			display: block;
+			height: 100%;
+			overflow: hidden;
+			box-sizing: border-box;
+			cursor: pointer;
+			height: 100px;
+		}
+
+		#main_file {
+			position: absolute;
+		    width: 1px;
+		    height: 1px;
+		    padding: 0;
+		    margin: -1px;
+		    overflow: hidden;
+		    clip: rect(0, 0, 0, 0);
+		    border: 0;
+		}
+		
+		.file_midBox img {
+			
+		    position: relative;
+		    top: 50%;
+		    left: 50%;
+		    -webkit-transform: translate(-50%, -50%);
+		    transform: translate(-50%, -50%);
+		    max-width: 100%;
+		    height: auto;
+		}
+		.upload_display {
+			width: 100%;
+			height: 100%;
+			
+		}
+		.cp_profile {
+			border: 2px dotted lightgray;
+			margin-bottom: 7px;
+			height: 100px;
+		}
+	</style>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 사이드바 -->
+			<aside class="side">
+				<div class="side_wrap">
+					
+					<div class="cp_profile preview_image">
+						<label class="file_bigBox" for="main_file">
+							<span class="file_midBox">
+								<img th:if="${fileList.containsKey(vo.cp_id)}" th:src="${fileList.get(vo.cp_id)}" alt="경로가 왜이래">
+								<img th:unless="${fileList.containsKey(vo.cp_id)}" th:src="@{/assets/images/pf.png}">
+							</span>
+						</label>
+					</div>
+					
+					<div class="side_title_wrap">
+						<h3 class="side_title">[[${vo.cp_name}]]</h3>
+					</div>
+					<div class="side_content_wrap">
+						<th:block th:if="${vo.cp_info != null}">
+							<p class="side_content">[[${vo.cp_info}]]</p>
+						</th:block>
+						<th:block th:unless="${vo.cp_info != null}">
+							<p class="side_content">업체정보를 등록해주세요.</p>
+						</th:block>
+					</div>
+					<div class="side_star_wrap">
+						<p>[[${cp_count}]]건</p>
+					</div>
+					<th:block th:if="${session.username != null}">
+						<div class="side_button_wrap">
+							<button class="consultant_button"><a th:href="@{user_consultant_regist (user_id=${session.username}, cp_id=${vo.cp_id})}">상담신청</a></button>
+						</div>
+					</th:block>
+					<th:block th:unless="${session.username != null}">
+
+					</th:block>
+				</div>
+			</aside>
+		</div>
+	</div>
+</th:block>
+
+</html>

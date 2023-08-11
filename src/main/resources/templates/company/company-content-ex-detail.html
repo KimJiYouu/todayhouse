@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.content-container {
+		text-align: center;
+	}
+
+	.content-center {
+		border-top: 3px solid #00bdfe;
+		margin-top: 30px;
+		padding-top: 30px;
+		display: inline-block;
+		width: 800px;
+	}
+
+	.content-title {
+		font-weight: 600;
+	}
+
+	.datetag {
+		margin-top: 30px;
+		margin-bottom: 30px;
+		text-align: right;
+	}
+
+	.idtag {
+		color: black;
+		font-size: 20px;
+		font-weight: 550;
+		margin-top: 30px;
+		text-align: left;
+	}
+
+	.contenttag {
+		margin-top: 30px;
+		font-size: 20px;
+		color: black;
+	}
+</style>
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #company-content-ex})}">
+
+	<div id="company-content-ex">
+
+		<!-- 네비게이션바 -->
+		<th:block th:replace="~{./include/company-layout :: nav}">
+
+		</th:block>
+
+		<!-- 네비게이션바2 -->
+		<th:block th:replace="~{./include/company-layout2 :: nav2}">
+
+		</th:block>
+
+		<div class="container content-container">
+			<div class="content-center">
+				<h3 class="content-title">[[${vo.cp_ex_title}]]</h3>
+				<p class="idtag">시공사 이름 : [[${vo.cp_id}]]</p>
+				<p class="datetag">작성날짜 : [[${#temporals.format(vo.cp_ex_regdate, 'yy년MM월dd일')}]]</p>
+				<hr />
+				<div>
+					<img th:if="${fileList2.containsKey(vo.cp_ex_num)}" th:src="${fileList2.get(vo.cp_ex_num)}">
+					<img th:unless="${fileList2.containsKey(vo.cp_ex_num)}" th:src="@{/assets/images/in7.jpeg}">
+				</div>
+				<p class="contenttag">[[${vo.cp_ex_content}]]</p>
+			</div>
+		</div>
+	</div>
+	</div>			
+</th:block>
+
+</html>

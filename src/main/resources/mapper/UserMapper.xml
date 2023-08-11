@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.today.house.user.service.UserMapper">
+
+	<!-- 유저 로그인시 -->
+	<select id="user_login_form" resultType="UserVO">
+		select * 
+		from user 
+		where user_id = #{user_id} and user_pw = #{user_pw}
+	</select>
+
+	<!-- 유저 회원가입시 -->
+	<insert id="user_regist_form">
+		insert into user (user_id, user_pw, user_email)
+		values (#{user_id}, #{user_pw}, #{user_email})
+	</insert>
+
+	<select id="user_mypage_check_form">
+		select *
+		from user
+		where user_id = #{user_id} and user_pw = #{user_pw}
+	</select>
+
+	<update id="user_mypage_change">
+		update user
+		set
+		user_pw = #{user_pw},
+		user_email = #{user_email}
+		where user_id = #{user_id}
+	</update>
+
+	<select id="user_consultant_list">
+		select * 
+		from consultant
+		where user_id = #{user_id}
+	</select>
+	
+	<select id="user_consultant_info">
+		select *
+		from consultant
+		where user_id = #{user_id} and consultant_num = #{consultant_num}
+	</select>
+
+</mapper>

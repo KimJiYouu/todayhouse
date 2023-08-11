@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+<!--달력적용-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #bodyContainer})}">
+
+
+
+	<div id="bodyContainer" style="background-color: rgb(255, 255, 255);">
+	
+	
+		<div id="consultant">
+	
+	
+			<div class="row justify-content-center">
+				<div class="section-heading text-center">
+					<h6>시공업체와 상담신청을 시작합니다</h6>
+					<h4>{업체이름넣기}<em> 견적서작성하기</em></h4>
+				</div>
+				<div class="section-heading text-center">
+					<fieldset class="cp_reg"><img src="#">업체이미지</fieldset>
+					<h7 style="color: darkgrey;">업체이름/분야/정보를 잘 확인해주세요</h7>
+				</div>
+	
+	
+				<div class="col-lg-4">
+					<hr style="width: 100%; margin: 0 auto; margin-top: 10px;" />
+					<form id="contact" action="" method="post">
+						<div class="row">
+							<div class="col-lg-4" style="margin-bottom: -100px;">
+								<fieldset class="section-heading text-center">
+									<h6>회원id</h6>
+									<input type="text" name="user_id" id="name" placeholder="user_id"autocomplete="on" readonly readorequired>
+								</fieldset>
+							</div>
+							<div class="col-lg-4">
+								<fieldset class="section-heading text-center">
+									<h6>전화번호</h6>
+									<input type="text" name="consultant_phone" id="consultant_phone" placeholder="연락가능 전화번호"autocomplete="on" required>
+								</fieldset>
+							</div>
+							
+							<div class="col-lg-4">
+								<fieldset class="section-heading text-center">
+									<h6>시공날짜</h6>
+									<input type="text" class="datepicker"  name="consultant_house_regdate "  readonly placeholder="시공날짜선택" required pattern="\d{4}-\d{2}-\d{2}">
+								</fieldset>
+							</div>
+							
+							<div class="col-lg-3">
+								<fieldset>
+					                    <select name="consultant_house_size" class="form-select" aria-label="Choose a category" id="category" onchange="this.form.click()">
+					                        <option selected>면적선택 3㎡(1평)단위</option>
+					                    </select>
+					             </fieldset>
+							</div>
+							<div class="col-lg-3">
+								 <fieldset>
+					                    <select name="consultant_house_adr" class="form-select" aria-label="Choose a category" id="category" onchange="this.form.click()">
+					                   		<option value="">지역선택</option>
+					                   		<option value="서울">서울</option>
+									        <option value="부산">부산</option>
+									        <option value="인천">인천</option>
+									        <option value="대구">대구</option>
+									        <option value="광주">광주</option>
+									        <option value="대전">대전</option>
+									        <option value="울산">울산</option>
+									        <option value="수원">수원</option>
+									        <option value="제주">제주</option>
+					                    </select>
+				
+					             </fieldset>
+							</div>
+							<div class="col-lg-3">
+					             <fieldset>
+					                    <select name="consultant_house_type" class="form-select" aria-label="Choose a category" id="category" onchange="this.form.click()">
+					                        <option value="">주거형태선택</option>
+					                        <option value="아파트">아파트</option>
+					                        <option value="일반주택">일반주택or빌라</option>
+					                        <option value="상업공간">상업공간</option>
+					            
+					                    </select>
+				
+					             </fieldset>
+							</div>
+							<div class="col-lg-3">
+					             <fieldset>
+					                    <select name="category" class="form-select" aria-label="Choose a category" id="category" onchange="this.form.click()">
+				                        <option value="">현재사용여부</option>
+					                        <option value="공실">공실</option>
+					                        <option value="공실예정">시공시 공실</option>
+					                        <option value="부분시공">사용/거주중(부분시공)</option>
+					                    </select>
+				
+					             </fieldset>
+							</div>
+							<div class="col-lg-12">
+								<fieldset style="margin-top: 30px;">
+									<textarea name="consultant_content" id="consultant_content" placeholder="상담하실내용을 적어주세요"></textarea>
+								</fieldset>
+							</div>
+							<div class="col-lg-12">
+								<fieldset>
+									<button type="submit" id="form-submit" class="orange-button">상담신청하기</button>
+								</fieldset>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="consult_bottom section-heading text-center">
+					<hr style="width: 32.5%; margin: 0 auto; margin-top: 10px;"/>
+		       <p style="color: rgb(0, 128, 255);"> 읽어주세요!</p>
+		       <p style="color: rgb(0, 128, 192);">인테리어 상담신청 과정에는 업체와의 시공상담 및 시공 과정뿐만 아니라 리뷰 검수 및 계약인증 과정까지 포함됩니다. </br>이를 위해 유저에게 리뷰 요청 및 계약확인 요청 연락을 드릴 수 있습니다.</p>
+        		 </hrdiv>
+				
+				
+				
+			</div>
+		</div>
+
+	</div>
+
+</th:block>
+
+
+<style>
+	#consultant {
+	
+	padding-top: 150px;
+	margin-bottom: 500px;
+	display: flex;
+  justify-content: center;
+
+	}
+	
+	#consult_bottom{
+		padding-top: 200px;
+	}
+	
+	.section-heading {
+    position: relative;
+    z-index: 2;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+	
+
+</style>
+
+
+
+
+
+
+<script>
+  const select = document.getElementById('category');
+  const maxC = 100; // 최대 C 값 (1부터 100까지)
+
+  // 옵션 값을 1부터 maxC까지 반복문을 통해 생성
+  for (let i = 1; i <= maxC; i++) {
+    // 새로운 <option> 요소를 생성
+    const option = document.createElement('option');
+    const value = i * 3.3058;
+    const floorValue = Math.floor(value); // 올림한 int 값으로 변환
+    option.textContent = i + '평 (' + floorValue + '㎡)'; // 각 옵션에 표시될 텍스트 설정
+    option.value = i; // 각 옵션의 값(value) 설정
+
+    // <select> 요소에 새로운 옵션을 추가
+    select.appendChild(option);
+  }
+  
+$(function() {
+    $( ".consultant_house_regdate" ).datepicker({
+    });
+});
+  
+  $(document).ready(function() {
+	$(".datepicker").datepicker({
+		dateFormat: 'yy-mm-dd',
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	});
+	$(".datepicker").prop('readonly', false); //required사용 
+});
+
+
+
+
+
+</script>
+
+ 
+</html>

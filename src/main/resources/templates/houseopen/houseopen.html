@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<script th:inline="javascript">
+	if('[[${msg}]]' != 'null') {
+		alert('[[${msg}]]');
+	}
+
+</script>
+
+<div th:block th:replace="~{./include/layout :: setContent( ~{:: #bodyContainer})}">
+
+ <!--templatemo-snapx-photography.cc 1866행-->
+<div id ="bodyContainer">
+
+
+<style>
+.filter_choice > li > a{
+	display: block;
+	color: black;
+}
+
+</style>
+
+
+  <section class="contest-waiting">
+    <div class="container">
+		<div class="row houseOpen_row">
+        <div class="col-lg-12">
+          <h5>집들이 게시판</h5>
+         <ul class="filter_list">
+		
+			 <li class="filter_li"><button class="filter_btn">주거형태</button>
+			 	<ul class="filter_choice">
+					 <input type="hidden" th:value="${house_type}" id="house_type">
+					 <li><a style="display: block;">원룸/오피스텔</a></li>
+					 <li><a style="display: block;">아파트</a></li>
+					 <li><a style="display: block;">빌라</a></li>
+					 <li><a style="display: block;">단독주택</a></li>
+					 <li><a style="display: block;">사무공간</a></li>
+					 <li><a style="display: block;">상업공간</a></li>
+					 <li><a style="display: block;">기타</a></li>
+				 </ul>
+			 </li>
+			
+			 <li class="filter_li"><button class="filter_btn">지역</button>
+			 	<ul class="filter_choice">
+					 <input type="hidden" th:value="${house_adr}" id="house_adr">
+				 	 <li><a style="display: block;">서울특별시</a></li>
+					 <li><a style="display: block;">부산광역시</a></li>
+					 <li><a style="display: block;">대구광역시</a></li>
+					 <li><a style="display: block;">인천광역시</a></li>
+					 <li><a style="display: block;">광주광역시</a></li>
+					 <li><a style="display: block;">대전광역시</a></li>
+					 <li><a style="display: block;">울산광역시</a></li>
+					 <li><a style="display: block;">강원도</a></li>
+					 <li><a style="display: block;">경기도</a></li>
+					 <li><a style="display: block;">경상도</a></li>
+					 <li><a style="display: block;">전라도</a></li>
+					 <li><a style="display: block;">충청도</a></li>
+					 <li><a style="display: block;">세종특별자치시</a></li>
+					 <li><a style="display: block;">제주특별자치도</a></li>
+				 </ul>
+				
+			 </li>
+			 <li class="filter_li"><button class="filter_btn">평수</button>
+			 	<ul class="filter_choice">
+					 <input type="hidden" th:value="${house_size}" id="house_size">
+					 <li><a style="display: block;">10평미만</a></li>
+					 <li><a style="display: block;">10평대</a></li>
+					 <li><a style="display: block;">20평대</a></li>
+					 <li><a style="display: block;">30평대</a></li>
+					 <li><a style="display: block;">40평대</a></li>
+					 <li><a style="display: block;">50평대</a></li>
+					 <li><a style="display: block;">60평대</a></li>
+					 <li><a style="display: block;">70평대이상</a></li>
+				 </ul>
+				 
+			 </li>
+			 <li class="filter_li">
+				 <button class="filter_btn">가족형태</button>
+			 	<ul class="filter_choice">
+					  <input type="hidden" th:value="${house_fam}" id="house_fam">
+					 <li><a style="display: block; color: black;">싱글라이프</a></li>
+					 <li><a style="display: block;">신혼부부</a></li>
+					 <li><a style="display: block;">아기랑함께</a></li>
+					 <li><a style="display: block;">취학자녀와함께</a></li>
+					 <li><a style="display: block;">부모님과함께</a></li>
+					 <li><a style="display: block;">기타</a></li>
+				 </ul>
+				
+			 </li>
+			 <li class="filter_li"><button class="filter_btn">작업분야</button>
+			 	<ul class="filter_choice">
+					 <input type="hidden" th:value="${house_remo}" id="house_remo">
+					 <li><a style="display: block;">리모델링</a></li>
+					 <li><a style="display: block;">홈스타일링</a></li>
+					 <li><a style="display: block;">부분공사</a></li>
+					 <li><a style="display: block;">건축</a></li>
+				 </ul>
+				
+			 </li>
+			 <li class="filter_li ">
+            <a href="houseopen" class="filter_btn erase">초기화</a>
+			 </li>
+		 </ul>
+		 <!--글쓰기 버튼-->
+		 
+		   <div class="main-button write_btn">
+            <a href="houseopenWrite">글쓰기</a>
+          </div>
+		
+        </div>
+		</div>
+		<ul class="row select_btn" style="margin-top: -30px; margin-bottom: 30px; margin-left: 2px;">
+			<li class="filter_btn select_type" th:style="${house_type == null or house_type == '' ? 'display: none;' : 'display: block;'}"><a style="display: block;">[[${house_type}]]<div class="xxx">X</div><a></a></li>
+			<li class="filter_btn select_adr" th:style="${house_adr == null or house_adr == '' ? 'display: none;' : 'display: block;'}"><a style="display: block;">[[${house_adr}]]<div class="xxx">X</div></a></li>
+			<li class="filter_btn select_size" th:style="${house_size == null or house_size == '' ? 'display: none;' : 'display: block;'}"><a style="display: block;">[[${house_size}]]<div class="xxx">X</div></a></li>
+			<li class="filter_btn select_fam" th:style="${house_fam == null or house_fam == '' ? 'display: none;' : 'display: block;'}"><a style="display: block;">[[${house_fam}]]<div class="xxx">X</div></a></li>
+			<li class="filter_btn select_remo" th:style="${house_remo == null or house_remo == '' ? 'display: none;' : 'display: block;'}"><a style="display: block;">[[${house_remo}]]<div class="xxx">X</div></a></li>
+
+		</ul>
+	
+		
+      <div class="row houseOpen_row">
+			  
+        <div class="col-lg-3 col-sm-6" th:each="vo, status: ${list}">
+		  <a th:href="@{houseopenContent(house_num=${vo.house_num})}" style="cursor: pointer;">
+          <div class="waiting-item">
+          <img th:if="${fileList.containsKey(vo.house_num)}"  th:src="${fileList.get(vo.house_num)}" alt="" style="height: 230px;">
+            <img th:unless="${fileList.containsKey(vo.house_num)}"  th:src="@{/assets/images/in8.jpg}" alt="" style="height: 230px;">
+          <!--  <img th:src="${fileList.get(50)}" alt="" style="height: 230px;">-->
+           <!-- <img th:src="@{/assets/images/logo.png}" alt="" style="height: 230px;">-->
+            <div class="down-content">
+              <h4>[[${vo.house_title}]] [[${vo.house_type}]]</h4>
+              <p>[[${vo.user_id}]]</p>
+              <span class="price" style="font-size: 15px;">평수: <em style="font-size: 13px;">[[${vo.house_size}]]</em></span>
+              <span class="deadline" style="font-size: 15px;">지역: <em style="font-size: 13px;">[[${vo.house_adr}]]</em></span>
+            </div>
+          </div>
+		  </a>
+        </div>
+		  
+  
+      </div><!--row끝-->
+      
+        <div class="col-lg-12">
+          <ul class="pagination">
+            <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
+          </ul>
+        </div>
+    </div>
+  </section>
+
+  </div>
+</th:block>
+
+
+
+</html>

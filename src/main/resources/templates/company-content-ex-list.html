@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.noneimage-wrap {
+		padding-top: 50px;
+		text-align: center;
+	}
+
+	.noneimage-wrap p {
+		margin-top: 20px;
+		font-size: 20px;
+		color: black;
+		font-weight: 550;
+	}
+
+	.noneimage {
+		width: 10%;
+	}
+
+	/* 테이블 전체 스타일링 */
+	.content-table {
+		width: 100%;
+		border-collapse: collapse;
+		border: 1px solid #ddd;
+		font-size: 14px;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	/* 테이블 헤더 스타일링 */
+	.content-table thead th {
+		background-color: #f2f2f2;
+		border: 1px solid #ddd;
+		padding: 10px;
+		font-weight: bold;
+	}
+
+	/* 테이블 내용 행 스타일링 */
+	.content-table tbody tr {
+		border: 1px solid #ddd;
+	}
+
+	/* 짝수 번째 행 배경색 변경 */
+	.content-table tbody tr:nth-child(even) {
+		background-color: #f2f2f2;
+	}
+
+	/* 테이블 셀 스타일링 */
+	.content-table td {
+		padding: 10px;
+		border: 1px solid #ddd;
+	}
+
+	/* 요청사항 및 응답상태 셀의 텍스트 왼쪽 정렬 */
+	.content-table td.align-left {
+		text-align: left;
+	}
+
+	/* 링크 스타일링 */
+	.detail-link {
+		color: #007bff;
+		text-decoration: none;
+		transition: color 0.3s;
+	}
+
+	.detail-link:hover {
+		color: #0056b3;
+	}
+
+	.exregist {
+		margin-top: 20px;
+		width: 10%;
+		height: 40px;
+		background-color: #00bdfe;
+		border: none;
+		border-radius: 15px;
+		color: antiquewhite;
+		font-size: 20px;
+		font-weight: 550;
+		text-align: center;
+		line-height: 40px;
+	}
+
+	.exregist:hover {
+		border: 2px solid #00bdfe;
+		background-color: white;
+		color: black;
+	}
+</style>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #company-ex-list})}">
+
+	<div id="company-ex-list">
+		<section class="contest-waiting">
+			<div class="container">
+				<div class="row">
+					<!-- 리스트 -->
+					<th:block th:if="${list.size == 0}">
+						<div class="noneimage-wrap">
+							<img src="assets/images/cat.jpg" alt="1" class="noneimage">
+							<p>죄송합니다. 표시할 정보가 없습니다.</p>
+						</div>
+					</th:block>
+					<th:block th:unless="${list.size == 0}">
+						<table class="content-table">
+							<thead>
+								<tr>
+									<th>사례 제목</th>
+									<th>사례 내용</th>
+									<th>사례 등록일</th>
+									<th>상세보기</th>
+								</tr>
+							</thead>
+							<tbody>
+								<th:block th:each="vo : ${list}">
+									<tr>
+										<td>[[${vo.cp_ex_title}]]</td>
+										<td>[[${vo.cp_ex_content}]]</td>
+										<td>[[${vo.cp_ex_regdate}]]</td>
+										<td><a class="detail-link"
+												th:href="@{cp_content_ex_modify (cp_id=${vo.cp_id}, cp_ex_num=${vo.cp_ex_num})}">수정</a>
+										</td>
+									</tr>
+								</th:block>
+							</tbody>
+						</table>
+					</th:block>
+					<!-- list end -->
+					<!-- 글 등록 버튼 -->
+					<a type="button" th:href="@{cp_content_ex_regist_view}" class="exregist">사례등록</a>
+				</div>
+			</div>
+		</section>
+	</div>
+</th:block>
+
+</html>

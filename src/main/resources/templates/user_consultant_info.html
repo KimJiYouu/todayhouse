@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.content-container {
+		text-align: center;
+	}
+
+	.content-center {
+		border-top: 3px solid #00bdfe;
+		margin-top: 150px;
+		padding-top: 30px;
+		display: inline-block;
+		width: 800px;
+	}
+
+	.content-title {
+		font-weight: 600;
+	}
+
+	.idtag {
+		color: black;
+		font-size: 20px;
+		font-weight: 550;
+		margin-top: 30px;
+		text-align: left;
+	}
+
+	.contenttag {
+		margin-top: 30px;
+		font-size: 20px;
+		color: black;
+	}
+</style>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #consultant-info})}">
+	<div id="consultant-info">
+		<div class="container content-container">
+			<div class="content-center">
+				<h3 class="content-title">[[${vo.user_id}]] 님의 시공신청은 현재 [[${vo.consultant_response}]] 상태입니다.</h3>
+				<hr>
+				<p class="idtag">시공사 이름 : [[${vo.cp_id}]]</p>
+				<hr>
+				<p class="idtag">내 전화번호 : [[${vo.consultant_phone}]]</p>
+				<hr />
+				<p class="contenttag" style="border: 1px solid rgb(209, 209, 209); height: 400px;">[[${vo.consultant_content}]]</p>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+</html>

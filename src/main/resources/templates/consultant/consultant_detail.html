@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #bodyContainer})}">
+	<div id="bodyContainer">
+	
+		<div id="consultant">
+			<div class="contest-details">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="top-content" style="margin-left:10px">
+	
+							<div class="col-lg-12">
+								<div class="section-heading2 text-center" style="margin: 0 auto; font-weight: bold; font-family: 'Humanbumsuk'!important;" >
+									<h4>{업체이름넣기} 견적서</h4><br/>
+								</div>
+								<ul id="reg_li row justify-content-center">
+									<li><span>고객아이디 </span> user_id </li>
+									<li><span>연락처 </span>user_phone </li>
+									<li><span>작성일 </span>2023/08/09 </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="main-content">
+						<div class="consultant_top">
+							<div class="row">
+								<hr />
+								<div class="col-lg-3 col-6">
+									<div class="item">
+										<h5>시공시작일</h5></br>
+										<h6>2023-08-11<br></h6>
+									</div>
+								</div>
+								<div class="col-lg-3 col-6">
+									<div class="item">
+										<h5>주거타입</h5></br>
+										<h6>아파트e<br></h6>
+									</div>
+								</div>
+								<div class="col-lg-3 col-6">
+									<div class="item">
+										<h5>면적</h5></br>
+										<h6>2평<br></h6>
+									</div>
+								</div>
+								<div class="col-lg-3 col-6">
+									<div class="item">
+										<h5>현재사용여부</h5></br>
+										<h6>공실<br></h6>
+	
+									</div>
+								</div>
+								<br /><br /><br /><br />
+								<hr />
+								<h5>요청사항</h5>
+							</div>
+							<div class="item" name="consultant_house_content">
+								<p>{consultant_house_content}</p>
+							</div>
+							<br />
+							<br />
+							<br />
+							<div>
+								<h6>추가사항(거절,보류시 사유)</h6></br>
+								<textarea id="consultant_house_cpCont"
+									style="resize: none; width: 100%; height: 100%;"></textarea>
+							</div>
+						</div>
+	
+						<br />
+						<br />
+	
+	
+						<div class="row">
+							<div class="col-lg-3 col-6">
+								<div class="consultant_btn">
+									<button type="button">수락</button>
+								</div>
+							</div>
+							<div class="col-lg-3 col-6">
+								<div class="consultant_btn">
+									<button type="button">보류</button>
+								</div>
+							</div>
+							<div class="col-lg-3 col-6">
+								<div class="consultant_btnNO">
+									<button type="button">거절</button>
+								</div>
+							</div>
+							<div class="col-lg-3 col-6">
+								<div class="consultant_btn">
+									<button type="button">목록</button>
+								</div>
+							</div>
+						</div>
+	
+					</div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	
+	</th:block>
+	
+	
+	
+	
+	
+	<style>
+	#consultant {
+		padding-top: 150px;
+		display: flex;
+	 	justify-content: center;
+	}
+
+	#reg_li > li{
+		display: inline-block;
+		margin: 0 auto;
+		text-align: center;
+		padding-left: 10px;
+	}
+
+	.item > h5{
+		text-align: center;
+		
+	}
+	.item > h6{
+		text-align: center;
+	
+	}
+
+	.consultant_top{
+		margin: 0;
+		
+		}
+
+	.consultant_btn button {
+		width: 100%;
+		padding: 10px; 
+		background-color: #00bdfe; 
+		color: rgb(255, 255, 255); 
+		border: none; 
+		cursor: pointer; 
+		border-radius: 10px;
+		}
+		
+
+	.consultant_btn button:hover {
+		background-color: rgb(255, 255, 255); 
+		color: #00bdfe; 
+	}
+		
+		
+	.consultant_btnNO button {
+		width: 100%;
+		padding: 10px; 
+		background-color: rgb(251, 134, 4); 
+		color: rgb(255, 255, 255); 
+		border: none; 
+		cursor: pointer; 
+		border-radius: 10px;
+	}
+		
+
+	.consultant_btnNO button:hover {
+		background-color: rgb(255, 255, 255); 
+		color: rgb(255, 0, 0); 
+	}
+
+
+
+  #consultant_house_cpCont {
+    color: rgb(128, 128, 128) !important; 
+    border: 1px solid rgb(216, 216, 216) !important; 
+    outline: none !important; 
+  }
+
+  #consultant_house_cpCont:focus {
+    border-color: rgb(192, 192, 192) !important; 
+  }
+
+
+@font-face {
+    font-family: 'Humanbumsuk'!important;
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Humanbumsuk.woff2') format('woff2')!important;
+}
+
+
+
+</style>
+	
+	
+	
+	</html>

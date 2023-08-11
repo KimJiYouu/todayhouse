@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.content-container {
+		margin-top: 200px;
+		position: relative;
+	}
+
+	.content-right {
+		text-align: center;
+		margin-bottom: 300px;
+	}
+
+	.info-table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	.info-table td {
+		padding: 8px;
+		border: 1px solid #ddd;
+	}
+
+	.info-table td:first-child {
+		color: #777;
+		width: 25px important;
+	}
+
+	.address {
+		background-color: #f2f2f2;
+	}
+
+	.address td:nth-child(2) {
+		font-weight: 550;
+	}
+
+
+	.passw {
+		background-color: #e0e0e0;
+	}
+
+	.passw td:nth-child(2) {
+		font-weight: 550;
+	}
+
+	.inputtag {
+		width: 600px;
+		height: 40px;
+	}
+
+	.changebtn {
+		margin-top: 20px;
+		width: 100%;
+		height: 40px;
+		background-color: #00bdfe;
+		border: none;
+		border-radius: 15px;
+		color: antiquewhite;
+		font-size: 20px;
+		font-weight: 550;
+	}
+
+	.changebtn:hover {
+		border: 2px solid #00bdfe;
+		background-color: white;
+		color: black;
+	}
+
+	.consulregist {
+		margin-top: 20px;
+		width: 100%;
+		height: 40px;
+		background-color: #00bdfe;
+		border: none;
+		border-radius: 15px;
+		color: antiquewhite;
+		font-size: 20px;
+		font-weight: 550;
+		text-align: center;
+		line-height: 40px;
+	}
+
+	.consulregist:hover {
+		border: 2px solid #00bdfe;
+		background-color: white;
+		color: black;
+	}
+</style>
+
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #user-mypage})}">
+	<div id="user-mypage">
+		<div class="container content-container">
+			<!-- my정보 -->
+			<div class="content-right">
+				<form action="user_mypage_change" method="post">
+					<input type="hidden" th:value="${session.username}" name="user_id">
+					<table class="info-table">
+						<tr class="address">
+							<td>
+								이메일
+							</td>
+							<td>
+								<input type="text" th:value="${vo.user_email}" name="user_email" class="inputtag">
+							</td>
+						</tr>
+						<tr class="passw">
+							<td>
+								비밀번호
+							</td>
+							<td>
+								<input type="password" th:value="${vo.user_pw}" name="user_pw" class="inputtag">
+							</td>
+						</tr>
+					</table>
+					<button type="submit" class="changebtn" id="change-button">변경</button>
+				</form>
+				<a type="button" th:href="@{user_consultant_view (user_id=${vo.user_id})}" class="consulregist">신청상담목록</a>
+			</div>
+		</div>
+	</div>
+</th:block>
+<script>
+	document.getElementById("change-button").addEventListener("click", function () {
+		if (confirm("정말 변경하시겠습니까?")) {
+			document.getElementById("change-form").submit();
+		}
+	});
+</script>
+
+</html>

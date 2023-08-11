@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<style>
+	.content-container {
+		position: relative;
+	}
+
+	.content-right {
+		padding-left: 350px;
+		overflow: hidden;
+	}
+
+	.content-ex-wrap {
+		float: left;
+		width: 33%;
+	}
+
+	.content-ex {
+		padding: 15px;
+	}
+
+	.content-ex-img-wrap {
+		margin-bottom: 20px;
+		cursor: pointer;
+	}
+
+	.content-ex-img-wrap img {
+		border-radius: 15px;
+	}
+
+	.ex-title {
+		font-size: 17px;
+		font-weight: 550;
+	}
+
+	.ex-content-wrap {
+		text-align: center;
+	}
+
+	.noneimage-wrap {
+		text-align: center;
+		margin: 0 auto;
+		width: 300px;
+		height: 300px;
+		line-height: 200px;
+	}
+
+	.noneimage {
+		display: inline-block;
+		width: 50%;
+		height: 50%;
+	}
+</style>
+<th:block th:replace="~{./include/layout :: setContent( ~{:: #company-content-ex})}">
+
+	<div id="company-content-ex">
+
+		<!-- 네비게이션바 -->
+		<th:block th:replace="~{./include/company-layout :: nav}">
+
+		</th:block>
+
+		<!-- 네비게이션바2 -->
+		<th:block th:replace="~{./include/company-layout2 :: nav2}">
+
+		</th:block>
+
+		<div class="container content-container">
+			<!-- 사이드바 -->
+			<th:block th:replace="~{./include/company-layout-side :: nav3}">
+
+			</th:block>
+			<div class="content-right">
+				<th:block th:if="${exlist.size() == 0}">
+					<div class="noneimage-wrap">
+						<img src="../assets/images/cat.jpg" alt="" class="noneimage">
+						<p>죄송합니다. 표시할 정보가 없습니다.</p>
+					</div>
+				</th:block>
+				<th:block th:unless="${exlist.size() == 0}">
+					<!-- 리스트 -->
+					<th:block th:each="exvo : ${exlist}">
+						<a th:href="@{cp_content_ex_detail(cp_id=${exvo.cp_id}, cp_ex_num=${exvo.cp_ex_num})}">
+							<div class="content-ex-wrap">
+								<div class="content-ex">
+									<div class="content-ex-img-wrap">
+										<img th:if="${fileList2.containsKey(exvo.cp_ex_num)}" th:src="${fileList2.get(exvo.cp_ex_num)}"
+									alt="경로가 왜이래">
+								<img th:unless="${fileList2.containsKey(exvo.cp_ex_num)}" th:src="@{/assets/images/in7.jpeg}">
+									</div>
+									<div class="down-content ex-content-wrap">
+										<p class="ex-title">[[${exvo.cp_ex_title}]]</p>
+									</div>
+								</div>
+							</div>
+						</a>
+					</th:block>
+				</th:block>
+				<!--리스트 end-->
+			</div>
+		</div>
+	</div>
+	</div>
+</th:block>
+
+</html>

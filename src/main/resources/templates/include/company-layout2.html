@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="nav2">
+	<style>
+		.nav2_wrap {
+			text-align: center;
+			height: 40px;
+			margin-bottom: 30px;
+		}
+
+		.company-info {
+			display: inline-block;
+			height: 100%;
+			font-size: 18px;
+			font-weight: 550;
+			padding: 0 20px;
+		}
+
+		.company-info:hover {
+			border-bottom: 2px solid #00bdfe;
+			color: #00bdfe;
+			cursor: pointer;
+		}
+
+		.company-ex {
+			display: inline-block;
+			height: 100%;
+			font-size: 18px;
+			font-weight: 550;
+			padding: 0 20px;
+		}
+
+		.company-ex:hover {
+			border-bottom: 2px solid #00bdfe;
+			color: #00bdfe;
+			cursor: pointer;
+		}
+	</style>
+	<!-- 네비게이션바2 -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="nav2_wrap">
+					<div class="company-info">
+						<span><a th:href="@{cp_content_info (cp_id=${vo.cp_id})}">업체정보</a></span>
+					</div>
+					<div class="company-ex">
+						<span><a th:href="@{cp_content_ex (cp_id=${vo.cp_id})}">시공사례</a></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+
+</html>
